@@ -1,3 +1,0 @@
-/Users/emma/dev/visual-slam/cmake-build-debug/CMakeFiles/visual_slam.dir
-/Users/emma/dev/visual-slam/cmake-build-debug/CMakeFiles/edit_cache.dir
-/Users/emma/dev/visual-slam/cmake-build-debug/CMakeFiles/rebuild_cache.dir

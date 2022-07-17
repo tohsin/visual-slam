@@ -1,0 +1,22 @@
+/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/Applications/CLion.app/Contents/bin/ninja/mac/ninja -G Ninja -S /Users/emma/dev/visual-slam/image_basics -B /Users/emma/dev/visual-slam/image_basics/cmake-build-debug
+CMake Warning at CMakeLists.txt:4 (find_package):
+  By not providing "FindOpenCVREQUIRED.cmake" in CMAKE_MODULE_PATH this
+  project has asked CMake to find a package configuration file provided by
+  "OpenCVREQUIRED", but CMake did not find one.
+
+  Could not find a package configuration file provided by "OpenCVREQUIRED"
+  with any of the following names:
+
+    OpenCVREQUIREDConfig.cmake
+    opencvrequired-config.cmake
+
+  Add the installation prefix of "OpenCVREQUIRED" to CMAKE_PREFIX_PATH or set
+  "OpenCVREQUIRED_DIR" to a directory containing one of the above files.  If
+  "OpenCVREQUIRED" provides a separate development package or SDK, be sure it
+  has been installed.
+
+
+-- Found OpenCV: /usr/local/Cellar/opencv/4.5.5_2 (found version "4.5.5") 
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /Users/emma/dev/visual-slam/image_basics/cmake-build-debug

@@ -1,0 +1,10 @@
+/venv
+/stereo_vison_3d_play/.idea
+/stereo_vison_3d_play/cmake-build-debug
+/orb_extraction_cv/cmake-build-debug
+/orb_extraction_cv/.idea
+/epipoloar_pose_estimation/.idea
+/epipoloar_pose_estimation/cmake-build-debug
+
+/triangulation_molecular_point_cloud/cmake-build-debug
+/triangulation_molecular_point_cloud/.idea

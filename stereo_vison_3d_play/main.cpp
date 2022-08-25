@@ -7,6 +7,13 @@
 #include <Eigen/Core>
 #include <Eigen/Geometry>
 
+#include <pangolin/var/var.h>
+#include <pangolin/var/varextra.h>
+#include <pangolin/gl/gl.h>
+#include <pangolin/gl/gldraw.h>
+#include <pangolin/display/display.h>
+#include <pangolin/display/view.h>
+#include <pangolin/handler/handler.h>
 
 using  namespace  Eigen;
 using  namespace std;
@@ -14,7 +21,8 @@ using  namespace std;
 std::string left_file = "/Users/emma/dev/visual-slam/stereo_vison_3d_play/data/left.png";
 std::string right_file = "/Users/emma/dev/visual-slam/stereo_vison_3d_play/data/right.png";
 
-
+void showPointCloud(
+        const vector<Vector4d, Eigen::aligned_allocator<Vector4d>> &pointcloud);
 
 int main() {
     // declare variables used in stereo vison
@@ -69,9 +77,48 @@ int main() {
 //    cv::imshow("disparity", disparity / 96.0);
 //    cv::waitKey(0);
 
-//    showPointCloud(point_cloud);
+    showPointCloud(point_cloud);
 
     return 0;
+}
+void showPointCloud(const vector<Vector4d, Eigen::aligned_allocator<Vector4d>> &pointcloud) {
+
+    if (pointcloud.empty()) {
+        cerr << "Point cloud is empty!" << endl;
+        return;
+    }
+
+    pangolin::CreateWindowAndBind("Point Cloud Viewer", 1024, 768);
+    glEnable(GL_DEPTH_TEST);
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+    pangolin::OpenGlRenderState s_cam(
+            pangolin::ProjectionMatrix(1024, 768, 500, 500, 512, 389, 0.1, 1000),
+            pangolin::ModelViewLookAt(0, -0.1, -1.8, 0, 0, 0, 0.0, -1.0, 0.0)
+    );
+
+    pangolin::View &d_cam = pangolin::CreateDisplay()
+            .SetBounds(0.0, 1.0, pangolin::Attach::Pix(175), 1.0, -1024.0f / 768.0f)
+            .SetHandler(new pangolin::Handler3D(s_cam));
+
+    while (pangolin::ShouldQuit() == false) {
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+        d_cam.Activate(s_cam);
+        glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+
+        glPointSize(2);
+        glBegin(GL_POINTS);
+        for (auto &p: pointcloud) {
+            glColor3f(p[3], p[3], p[3]);
+            glVertex3d(p[0], p[1], p[2]);
+        }
+        glEnd();
+        pangolin::FinishFrame();
+        usleep(5000);   // sleep 5 ms
+    }
+    return;
 }
 
 

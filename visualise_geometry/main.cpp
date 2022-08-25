@@ -6,15 +6,13 @@
 using namespace Eigen;
 using namespace std;
 
-#include <pangolin/pangolin.h>
-//
-//#include <pangolin/var/var.h>
-//#include <pangolin/var/varextra.h>
-//#include <pangolin/gl/gl.h>
-//#include <pangolin/gl/gldraw.h>
-//#include <pangolin/display/display.h>
-//#include <pangolin/display/view.h>
-//#include <pangolin/handler/handler.h>
+#include <pangolin/var/var.h>
+#include <pangolin/var/varextra.h>
+#include <pangolin/gl/gl.h>
+#include <pangolin/gl/gldraw.h>
+#include <pangolin/display/display.h>
+#include <pangolin/display/view.h>
+#include <pangolin/handler/handler.h>
 #include <fstream>
 
 string trajectory_file = "/Users/emma/dev/visual-slam/visualise_geometry/trajectory.txt";

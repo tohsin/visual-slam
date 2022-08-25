@@ -8,3 +8,6 @@
 
 /triangulation_molecular_point_cloud/cmake-build-debug
 /triangulation_molecular_point_cloud/.idea
+
+/pose_estimation_3d_2d/cmake-build-debug
+/pose_estimation_3d_2d/.idea

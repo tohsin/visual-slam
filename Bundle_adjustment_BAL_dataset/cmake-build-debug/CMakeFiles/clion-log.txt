@@ -1,0 +1,24 @@
+/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/Applications/CLion.app/Contents/bin/ninja/mac/ninja -G Ninja -S /Users/emma/dev/visual-slam/Bundle_adjustment_BAL_dataset -B /Users/emma/dev/visual-slam/Bundle_adjustment_BAL_dataset/cmake-build-debug
+-- Found AMD headers in: /usr/local/include
+-- Found AMD library: /usr/local/lib/libamd.dylib
+-- Found CAMD headers in: /usr/local/include
+-- Found CAMD library: /usr/local/lib/libcamd.dylib
+-- Found CCOLAMD headers in: /usr/local/include
+-- Found CCOLAMD library: /usr/local/lib/libccolamd.dylib
+-- Found CHOLMOD headers in: /usr/local/include
+-- Found CHOLMOD library: /usr/local/lib/libcholmod.dylib
+-- Found COLAMD headers in: /usr/local/include
+-- Found COLAMD library: /usr/local/lib/libcolamd.dylib
+-- Found SPQR headers in: /usr/local/include
+-- Found SPQR library: /usr/local/lib/libspqr.dylib
+-- Found Config headers in: /usr/local/include
+-- Found Config library: /usr/local/lib/libsuitesparseconfig.dylib
+-- Found Intel Thread Building Blocks (TBB) library (2021.5 / ) include location: . Assuming SuiteSparseQR was compiled with TBB.
+-- Could not find librt, but found SuiteSparse_config, assuming that SuiteSparse was compiled without timing.
+-- Found required Ceres dependency: Eigen version 3.4.0 in /usr/local/share/eigen3/cmake
+-- Found required Ceres dependency: glog
+-- Found required Ceres dependency: gflags
+-- Found Ceres version: 2.1.0 installed in: /usr/local with components: [EigenSparse, SparseLinearAlgebraLibrary, LAPACK, SuiteSparse, CXSparse, AccelerateSparse, SchurSpecializations, Multithreading]
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /Users/emma/dev/visual-slam/Bundle_adjustment_BAL_dataset/cmake-build-debug

@@ -1,0 +1,4 @@
+/Users/emma/dev/visual-slam/Bundle_adjustment_BAL_dataset/cmake-build-debug/CMakeFiles/Bundle_adjustment_BAL_dataset.dir
+/Users/emma/dev/visual-slam/Bundle_adjustment_BAL_dataset/cmake-build-debug/CMakeFiles/bal_common.dir
+/Users/emma/dev/visual-slam/Bundle_adjustment_BAL_dataset/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/emma/dev/visual-slam/Bundle_adjustment_BAL_dataset/cmake-build-debug/CMakeFiles/rebuild_cache.dir

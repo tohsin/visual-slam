@@ -1,0 +1,4 @@
+/Users/emma/dev/visual-slam/poseGraph_g2o/cmake-build-debug/CMakeFiles/bal_common.dir
+/Users/emma/dev/visual-slam/poseGraph_g2o/cmake-build-debug/CMakeFiles/poseGraph_g2o.dir
+/Users/emma/dev/visual-slam/poseGraph_g2o/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/emma/dev/visual-slam/poseGraph_g2o/cmake-build-debug/CMakeFiles/rebuild_cache.dir

@@ -1,0 +1,12 @@
+/Users/emma/dev/visual-slam/stereo_slam/build/CMakeFiles/test.dir
+/Users/emma/dev/visual-slam/stereo_slam/build/CMakeFiles/edit_cache.dir
+/Users/emma/dev/visual-slam/stereo_slam/build/CMakeFiles/rebuild_cache.dir
+/Users/emma/dev/visual-slam/stereo_slam/build/src/CMakeFiles/test.dir
+/Users/emma/dev/visual-slam/stereo_slam/build/src/CMakeFiles/edit_cache.dir
+/Users/emma/dev/visual-slam/stereo_slam/build/src/CMakeFiles/rebuild_cache.dir
+/Users/emma/dev/visual-slam/stereo_slam/build/test/CMakeFiles/test.dir
+/Users/emma/dev/visual-slam/stereo_slam/build/test/CMakeFiles/edit_cache.dir
+/Users/emma/dev/visual-slam/stereo_slam/build/test/CMakeFiles/rebuild_cache.dir
+/Users/emma/dev/visual-slam/stereo_slam/build/app/CMakeFiles/test.dir
+/Users/emma/dev/visual-slam/stereo_slam/build/app/CMakeFiles/edit_cache.dir
+/Users/emma/dev/visual-slam/stereo_slam/build/app/CMakeFiles/rebuild_cache.dir

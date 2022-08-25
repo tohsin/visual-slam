@@ -1,0 +1,4 @@
+# ninja log v5
+6	866	1659560552356901509	CMakeFiles/bal_common.dir/common.cpp.o	9f4d9220bd32d140
+867	1063	1659560552575297000	libbal_common.a	970dd4dc27800382
+0	5849	1659560674247671929	CMakeFiles/Bundle_adjustment_BAL_dataset.dir/main.cpp.o	64139a9d5be63fdd

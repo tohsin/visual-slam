@@ -1,0 +1,69 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.22"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "Bundle_adjustment_BAL_dataset",
+					"targetIndexes" : 
+					[
+						0,
+						1
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "Bundle_adjustment_BAL_dataset::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Bundle_adjustment_BAL_dataset-Debug-009dbe50c4a71df91515.json",
+					"name" : "Bundle_adjustment_BAL_dataset",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "bal_common::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-bal_common-Debug-c3ce9000acd3b2c4c6c6.json",
+					"name" : "bal_common",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/Users/emma/dev/visual-slam/Bundle_adjustment_BAL_dataset/cmake-build-debug",
+		"source" : "/Users/emma/dev/visual-slam/Bundle_adjustment_BAL_dataset"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 3
+	}
+}

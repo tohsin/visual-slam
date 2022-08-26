@@ -8,6 +8,8 @@ File to be used in all incolusion
 #include <vector>
 #include <thread>
 #include <typeinfo>
+#include <list>
+#include <memory> // for smart pointers
 
 
 // define the commonly included file to avoid a long include list
@@ -15,3 +17,6 @@ File to be used in all incolusion
 #include <Eigen/Geometry>
 
 #include <opencv2/core/core.hpp>
+#include <opencv2/features2d.hpp>
+
+typedef Eigen::Matrix<double, 3, 1> Vec3;

@@ -24,12 +24,13 @@ public:
 
 
     void SetMap(Map::Ptr map) { 
+        // set pointer to map object
         map_ = map; 
     }
 
 public:
-    Map::Ptr map_;
-    
+    Map::Ptr map_ = nullptr;
+    Frame::Ptr current_frame_ = nullptr;
     
 }
 }

@@ -47,7 +47,7 @@ find_package(GFlags REQUIRED)
 include_directories(${GFLAGS_INCLUDE_DIRS})
 
 # csparse
-find_package(CSparse REQUIRED)
+find_package(CSPARSE REQUIRED)
 include_directories(${CSPARSE_INCLUDE_DIR})
 
 find_package(OpenGL REQUIRED QUIET)

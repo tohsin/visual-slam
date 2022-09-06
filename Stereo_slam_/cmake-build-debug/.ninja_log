@@ -1,0 +1,6 @@
+# ninja log v5
+18	3560	1662414005138867448	src/CMakeFiles/Stereo_slam_.dir/camera.cpp.o	e0e7dca7c3590bf7
+19	521	1662424548483110469	build.ninja	d1d7f4d148166cd5
+174	376	1661531378884744008	src/libStereo_slam_.dylib	e93b4657deaab244
+13	15442	1662414016910136304	src/CMakeFiles/Stereo_slam_.dir/frontend.cpp.o	6f6d28ab43c488fa
+15444	16014	1662414017587528718	../lib/libStereo_slam_.dylib	97ad48d58f03e199

@@ -26,6 +26,8 @@ pnp_poseEtimation_3d2d_graphOptimisation/build
 /image_basics/.idea
 image_basics/cmake-build-debug
 
+/coordinate_transform/build
+
 /cpp_setup/build
 
 /.vscode

@@ -14,6 +14,17 @@
 
 /Stereo_slam_/cmake-build-debug
 /Stereo_slam_/.idea
+/Stereo_slam_/lib/libStereo_slam_.dylib
+
+
+/poseGraph_g2o/.idea
+/poseGraph_g2o/cmake-build-debug
+
+
+pnp_poseEtimation_3d2d_graphOptimisation/build
+
+/image_basics/.idea
+image_basics/cmake-build-debug
 
 /cpp_setup/build
 

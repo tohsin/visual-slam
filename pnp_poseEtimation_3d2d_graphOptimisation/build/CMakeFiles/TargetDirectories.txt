@@ -1,3 +1,0 @@
-/Users/emma/dev/visual-slam/pnp_poseEtimation_3d2d_graphOptimisation/build/CMakeFiles/pose_esimation_graph.dir
-/Users/emma/dev/visual-slam/pnp_poseEtimation_3d2d_graphOptimisation/build/CMakeFiles/edit_cache.dir
-/Users/emma/dev/visual-slam/pnp_poseEtimation_3d2d_graphOptimisation/build/CMakeFiles/rebuild_cache.dir

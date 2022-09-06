@@ -11,3 +11,6 @@
 
 /pose_estimation_3d_2d/cmake-build-debug
 /pose_estimation_3d_2d/.idea
+
+/Stereo_slam_/cmake-build-debug
+/Stereo_slam_/.idea

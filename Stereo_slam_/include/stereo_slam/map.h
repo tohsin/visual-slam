@@ -9,7 +9,7 @@
 
 #include "stereo_slam/common_include.h"
 #include "stereo_slam/mappoint.h"
-
+#include "stereo_slam/frame.h"
 namespace stereoSlam{
 
     struct Map{
@@ -21,7 +21,6 @@ namespace stereoSlam{
         typedef std::unordered_map<unsigned long, Frame::Ptr> KeyframesType;
 
         Map() {}
-
 
         void InsertKeyFrame(Frame::Ptr frame);
 
@@ -49,6 +48,7 @@ namespace stereoSlam{
 
     private:
         void CleanMap();
+        void RemoveOldKeyframe();
 
 
         std::mutex data_mutex_;

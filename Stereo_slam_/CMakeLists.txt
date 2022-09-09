@@ -9,14 +9,26 @@ find_package(OpenGL REQUIRED QUIET)
 include_directories(${OPENGL_INCLUDE_DIR})
 
 
-
-
 list(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake_modules)
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
 set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
 
 find_package(fmt REQUIRED)
+# gtest
+find_package(GTest REQUIRED)
+include_directories(${GTEST_INCLUDE_DIRS})
 
+# glog
+find_package(Glog REQUIRED)
+include_directories(${GLOG_INCLUDE_DIRS})
+
+# gflags
+find_package(GFlags REQUIRED)
+include_directories(${GFLAGS_INCLUDE_DIRS})
+
+# pangolin
+find_package(Pangolin REQUIRED)
+include_directories(${Pangolin_INCLUDE_DIRS})
 
 find_package(OpenCV REQUIRED)
 include_directories(${OpenCV_INCLUDE_DIRS})
@@ -33,6 +45,14 @@ include_directories(${Sophus_INCLUDE_DIRS})
 find_package(G2O REQUIRED)
 include_directories(${G2O_INCLUDE_DIRS})
 
+# csparse
+find_package(CSPARSE REQUIRED)
+include_directories(${CSPARSE_INCLUDE_DIR})
+
+
+find_package(OpenGL REQUIRED QUIET)
+include_directories(${OPENGL_INCLUDE_DIR})
+
 set(THIRD_PARTY_LIBS
         OpenGL::GL
         Eigen3::Eigen
@@ -44,6 +64,8 @@ set(THIRD_PARTY_LIBS
         ${G2O_CORE_LIBRARY} ${G2O_STUFF_LIBRARY}
         ${G20_TYPES_LIBRARY}
         ${G2O_SOLVER_CSPARSE}
+        ${G20_CSPARSE_EXTENSION}
+        ${G2O_SOLVER_CSPARSE_LIBRARY}
         ${GTEST_BOTH_LIBRARIES}
         ${GLOG_LIBRARIES}
         ${GFLAGS_LIBRARIES}

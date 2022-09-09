@@ -12,10 +12,10 @@
 #include "stereo_slam/frame.h"
 #include "stereo_slam/map.h"
 #include "stereo_slam/camera.h"
-
+#include "stereo_slam/backend.h"
 namespace stereoSlam{
 
-    class Backend;
+
     class Viewer;
 
     enum class FrontendStatus { INITING, TRACKING_GOOD, TRACKING_BAD, LOST };
@@ -88,12 +88,20 @@ namespace stereoSlam{
         */
         int TriangulateNewPoints();
 
+        /**
+       * Build the initial map with single image
+       * @return true if succeed
+       */
+        bool BuildInitMap();
+
         int tracking_inliers_ = 0;  // inliers, used for testing new keyframes
+        int num_features_init_ = 100;
         int num_features_tracking_ = 50;
         int num_features_needed_for_keyframe_ = 80;
+        int num_features_tracking_bad_ = 20;
 
         Camera::Ptr camera_left_ = nullptr;
-        Camera::Ptr camera_RIGHT_ = nullptr;
+        Camera::Ptr camera_right_ = nullptr;
         Map::Ptr map_ = nullptr;
         Frame::Ptr current_frame_ = nullptr;
 
@@ -106,6 +114,9 @@ namespace stereoSlam{
 //        The relative motion between the current frame and the previous frame,
 //        which is used to estimate the initial pose value of the current frame
         SE3 relative_motion_;
+        cv::Ptr<cv::GFTTDetector> gftt_;  // feature detector in opencv
+
+
 
 
     };

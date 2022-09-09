@@ -5,6 +5,7 @@
 #include "stereo_slam/frontend.h"
 #include "stereo_slam/g2o_types.h"
 #include "stereo_slam/algorithm.h"
+#include "stereo_slam/viewer.h"
 namespace stereoSlam{
 
     bool Frontend::AddFrame(stereoSlam::Frame::Ptr frame){
@@ -14,27 +15,136 @@ namespace stereoSlam{
         {
             case FrontendStatus::INITING:
                 /* code */
-                return SteroInit();
+                SteroInit();
                 break;
             case FrontendStatus::TRACKING_GOOD:
                 /* code */
-
                 break;
             case FrontendStatus::TRACKING_BAD:
                 /* code */
-                return Track();
+                Track();
                 break;
             case FrontendStatus::LOST:
-                return Reset();
+                Reset();
                 break;
             default:
                 break;
 
         }
-
         last_frame_ = current_frame_;
         return true;
     }
+
+    bool Frontend::SteroInit(){
+        int num_features_left = DetectFeatures();
+        int num_coor_features = FindFeaturesInRight();
+        if (num_coor_features < num_features_init_) {
+            return false;
+        }
+
+        bool build_map_success = BuildInitMap();
+
+        if (build_map_success) {
+            status_ = FrontendStatus::TRACKING_GOOD;
+            if (viewer_) {
+                viewer_->AddCurrentFrame(current_frame_);
+                viewer_->UpdateMap();
+            }
+            return true;
+        }
+        return false;
+
+    }
+
+    bool Frontend::Reset(){
+        return true;
+    }
+
+    int Frontend::DetectFeatures(){
+        // use gftt detector and append key point to current frame features  left
+        cv::Mat mask(current_frame_->left_img_.size(), CV_8UC1, 255);
+        /**
+         * for each feature in the curent frame we draw a rectangle to represent the point
+         * and render it on the mask template we just created
+         *
+         * the rectangle is the feature point offset by 10 x, y in corner
+         * */
+
+
+        for (auto &feat : current_frame_->features_left_) {
+            cv::rectangle(mask, feat->position_.pt - cv::Point2f(10, 10),
+                          feat->position_.pt + cv::Point2f(10, 10), 0, cv::FILLED);
+        }
+
+        std::vector<cv::KeyPoint> keypoints;
+        // to detect keypoints in left image
+        gftt_->detect(current_frame_->left_img_, keypoints, mask);
+        int cnt_detected = 0;
+        for (auto &kp : keypoints) {
+            current_frame_->features_left_.push_back(
+                    Feature::Ptr(new Feature(current_frame_, kp)));
+            cnt_detected++;
+        }
+
+        LOG(INFO) << "Detect " << cnt_detected << " new features";
+        return cnt_detected;
+
+    }
+
+    int Frontend::FindFeaturesInRight() {
+        /// using LK flow to deterimne features in right image
+        std::vector<cv::Point2f> kps_left, kps_right;
+
+        for (auto &kp : current_frame_->features_left_){
+            kps_left.push_back(kp->position_.pt);
+            // to increase better chances we use 3d point of left key point to produce appoximation of points.
+            //
+            auto map_point = kp->map_point_.lock();
+            if (map_point){
+                auto pixel_pos = camera_right_->world2pixel(map_point->pos_, current_frame_->Pose());
+                kps_right.push_back(cv::Point2f(pixel_pos[0], pixel_pos[1]));
+            } else {
+                // use same pixel in left iamge
+                kps_right.push_back(kp->position_.pt);
+            }
+        }
+
+        std::vector<uchar> status;
+        Mat error;
+        cv::calcOpticalFlowPyrLK(
+                current_frame_->left_img_,\
+                current_frame_->right_img_,
+                kps_left,
+                kps_right,
+                status,
+                error,
+                cv::Size(11, 11),
+                3,
+                cv::TermCriteria(cv::TermCriteria::COUNT + cv::TermCriteria::EPS, 30,
+                                 0.01),
+                cv::OPTFLOW_USE_INITIAL_FLOW);
+
+        int num_good_pts = 0;
+        for (size_t i = 0; i < status.size(); ++i) {
+            if (status[i]) {
+                cv::KeyPoint kp(kps_right[i], 7);
+                Feature::Ptr feat(new Feature(current_frame_, kp));
+                feat->is_on_left_image_ = false;
+                current_frame_->features_right_.push_back(feat);
+                num_good_pts++;
+            } else {
+                current_frame_->features_right_.push_back(nullptr);
+            }
+        }
+        LOG(INFO) << "Find " << num_good_pts << " in the right image.";
+        return num_good_pts;
+        return 0;
+    }
+
+    bool Frontend::BuildInitMap(){
+        return true;
+    }
+
 
     bool Frontend::Track() {
         if (last_frame_){
@@ -58,19 +168,11 @@ namespace stereoSlam{
         // update key frame and update current pose
         relative_motion_ = current_frame_->Pose() * last_frame_->Pose().inverse();
 
-        if (viewer_) viewer_->AddCurrentFrame(current_frame_);
+//       if (viewer_) viewer_->AddCurrentFrame(current_frame_);
         return true;
 
 
-        return true;
-    }
 
-    bool Frontend::Reset(){
-        return true;
-    }
-
-    bool Frontend::SteroInit(){
-        return true;
     }
 
     int Frontend::TrackLastFrame() {
@@ -93,8 +195,8 @@ namespace stereoSlam{
         }
         std::vector<uchar> status;
         Mat error;
-        cv::calcOpticalFlowPyrLK(last_frame_->left_image_,
-                                 current_frame_->left_image_,
+        cv::calcOpticalFlowPyrLK(last_frame_->left_img_,
+                                 current_frame_->left_img_,
                                  kps_last,
                                  kps_current,
                                  status,
@@ -226,7 +328,7 @@ namespace stereoSlam{
         map_->InsertKeyFrame(current_frame_);
 
         LOG(INFO) << "Set frame " << current_frame_->id_ << " as keyframe "
-                  << current_frame_->keyframe_id_;
+                  << current_frame_->key_frame_id_;
 
 
         SetObservationsForKeyFrame();
@@ -245,15 +347,23 @@ namespace stereoSlam{
     }
 
     void Frontend::SetObservationsForKeyFrame() {
+        // loop  through each features of current frame and map the map point back to the observation
+        //Set the features in keyframe as new observation of the map points
         for (auto &feat : current_frame_->features_left_) {
             auto map_point = feat->map_point_.lock();
-            if (map_point) map_point->AddObservation(feat);
+            if (map_point) {
+                map_point->AddObservation(feat);
+            }
         }
     }
 
+    int Frontend:: TriangulateNewPoints(){
+        return 0;
+    }
 
+//
 
-
+//
 
 }
 

@@ -10,10 +10,15 @@
 #include <vector>
 #include <thread>
 #include <typeinfo>
-#include <list>
 #include <unordered_map>
 #include <memory> // for smart pointers
-
+#include <atomic>
+#include <condition_variable>
+#include <list>
+#include <map>
+#include <mutex>
+#include <set>
+#include <string>
 
 // define the commonly included file to avoid a long include list
 #include <Eigen/Core>

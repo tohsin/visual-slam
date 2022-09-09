@@ -12,13 +12,14 @@
 #define STEREO_SLAM__MAPPOINT_H
 
 #include "stereo_slam/common_include.h"
+#include "stereo_slam/feature.h"
 
 namespace stereoSlam{
 
     struct MapPoint{
     public:
         EIGEN_MAKE_ALIGNED_OPERATOR_NEW;
-        typedef std::shared_ptr<Feature> Ptr;
+        typedef std::shared_ptr<MapPoint> Ptr;
         unsigned long id_ = 0;
         bool is_outlier = false;
         Vec3 pos_ = Vec3::Zero(); // 3d position
